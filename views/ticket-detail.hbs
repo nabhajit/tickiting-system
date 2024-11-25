@@ -1,0 +1,52 @@
+<div class="ticket-detail">
+    <div class="ticket-header">
+        <h2>{{ticket.title}}</h2>
+        <div class="ticket-info">
+            <span class="ticket-id">Ticket #{{ticket._id}}</span>
+            <div class="status-display">
+                Current Status: <span class="status-badge {{ticket.status}}">{{ticket.status}}</span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="ticket-content">
+        <div class="description-section">
+            <h3>Description</h3>
+            <p>{{ticket.description}}</p>
+        </div>
+        
+        <div class="ticket-meta">
+            <p><strong>Created:</strong> {{formatDate ticket.createdAt}}</p>
+        </div>
+
+        <div class="comments-section">
+            <h3>Comments</h3>
+            <div class="comments-list">
+                {{#if ticket.comments.length}}
+                    {{#each ticket.comments}}
+                        <div class="comment">
+                            <p>{{this.text}}</p>
+                            <small>Added by {{this.createdBy.username}} on {{this.createdAt}}</small>
+                        </div>
+                    {{/each}}
+                {{else}}
+                    <p class="no-comments">No comments yet.</p>
+                {{/if}}
+            </div>
+
+            <form id="commentForm" class="comment-form">
+                <div class="form-group">
+                    <label for="commentText">Add a Comment</label>
+                    <textarea id="commentText" name="commentText" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Add Comment</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="ticket-actions">
+        <a href="/user/dashboard" class="btn btn-secondary">Back to Dashboard</a>
+    </div>
+</div>
+
+<script src="/js/ticket-detail.js"></script> 

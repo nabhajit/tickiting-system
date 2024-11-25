@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticketing System</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-brand">Ticketing System</div>
+        {{#if user}}
+            <div class="navbar-menu">
+                <a href="{{#if (eq user.role 'admin')}}/admin{{else}}/user{{/if}}/dashboard">Dashboard</a>
+                <span class="username">{{user.username}}</span>
+                <a href="/auth/logout" class="logout-btn">Logout</a>
+            </div>
+        {{/if}}
+    </nav>
+
+    <div class="container">
+        {{{body}}}
+    </div>
+
+    {{#if (eq user.role 'admin')}}
+        <script src="/js/admin.js"></script>
+    {{else}}
+        <script src="/js/user.js"></script>
+    {{/if}}
+</body>
+</html> 

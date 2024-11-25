@@ -1,0 +1,51 @@
+<div class="dashboard">
+    <div class="dashboard-header">
+        <h2>My Tickets</h2>
+        <button class="btn btn-primary" id="newTicketBtn">New Ticket</button>
+    </div>
+
+    <div class="tickets-container">
+        {{#if tickets.length}}
+            {{#each tickets}}
+                <div class="ticket-card" data-id="{{this._id}}">
+                    <div class="ticket-header">
+                        <h3>{{this.title}}</h3>
+                        <span class="status-badge {{this.status}}">{{this.status}}</span>
+                    </div>
+                    <div class="ticket-id">
+                        <small>Ticket #{{this._id}}</small>
+                    </div>
+                    <p class="description">{{this.description}}</p>
+                    <div class="ticket-footer">
+                        <span class="date">Created: {{this.createdAtFormatted}}</span>
+                        <div class="ticket-actions">
+                            <button class="btn btn-secondary view-ticket" data-id="{{this._id}}">View Details</button>
+                            <button class="btn btn-danger delete-ticket" data-id="{{this._id}}">Delete</button>
+                        </div>
+                    </div>
+                </div>
+            {{/each}}
+        {{else}}
+            <p class="no-tickets">No tickets found. Create a new ticket to get started.</p>
+        {{/if}}
+    </div>
+
+    <!-- New Ticket Modal -->
+    <div id="ticketModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Create New Ticket</h2>
+            <form id="newTicketForm">
+                <div class="form-group">
+                    <label for="title">Title</label>
+                    <input type="text" id="title" name="title" required>
+                </div>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea id="description" name="description" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit Ticket</button>
+            </form>
+        </div>
+    </div>
+</div> 

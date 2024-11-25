@@ -1,0 +1,45 @@
+<div class="dashboard admin-dashboard">
+    <h2>Ticket Management</h2>
+    
+    <div class="filters">
+        <select id="statusFilter">
+            <option value="">All Statuses</option>
+            <option value="Open">Open</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Resolved">Resolved</option>
+            <option value="Closed">Closed</option>
+        </select>
+    </div>
+
+    <div class="tickets-container">
+        {{#if tickets.length}}
+            {{#each tickets}}
+                <div class="ticket-card" data-id="{{this._id}}">
+                    <div class="ticket-header">
+                        <h3>{{this.title}}</h3>
+                        <div class="status-management">
+                            <select class="status-select" data-id="{{this._id}}">
+                                <option value="Open" {{#if (eq this.status 'Open')}}selected{{/if}}>Open</option>
+                                <option value="In Progress" {{#if (eq this.status 'In Progress')}}selected{{/if}}>In Progress</option>
+                                <option value="Resolved" {{#if (eq this.status 'Resolved')}}selected{{/if}}>Resolved</option>
+                                <option value="Closed" {{#if (eq this.status 'Closed')}}selected{{/if}}>Closed</option>
+                            </select>
+                            <button class="btn btn-primary update-status" data-id="{{this._id}}">Update Status</button>
+                        </div>
+                    </div>
+                    <p class="description">{{this.description}}</p>
+                    <div class="ticket-meta">
+                        <span>Created by: {{this.userId.username}}</span>
+                        <span>Date: {{formatDate this.createdAt}}</span>
+                    </div>
+                    <div class="ticket-actions">
+                        <button class="btn btn-secondary view-ticket" data-id="{{this._id}}">View Details</button>
+                        <button class="btn btn-danger delete-ticket" data-id="{{this._id}}">Delete</button>
+                    </div>
+                </div>
+            {{/each}}
+        {{else}}
+            <p class="no-tickets">No tickets found.</p>
+        {{/if}}
+    </div>
+</div> 
