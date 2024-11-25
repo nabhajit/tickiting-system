@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Ticketing System
 
 A web-based ticketing system built with Node.js, Express, MongoDB, and Handlebars.
@@ -23,3 +24,6 @@ A web-based ticketing system built with Node.js, Express, MongoDB, and Handlebar
 ## Installation
 
 1. Clone the repository: 
+=======
+# tickiting-system
+>>>>>>> 5ed2534c38fc38ac9fbfefa04423c2c2100ba089
